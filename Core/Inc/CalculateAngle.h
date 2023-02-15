@@ -30,6 +30,8 @@ extern Struct_Angle Angle;
 
 void CalculateAccAngle(Struct_Angle* Angle, Struct_MPU6050* MPU6050);
 void CalculateGyroAngle(Struct_Angle* Angle, Struct_MPU6050* MPU6050);
+void CalculateCompliFilter(Struct_Angle* Angle, Struct_MPU6050* MPU6050);
+
 
 #ifdef __cplusplus
 }
