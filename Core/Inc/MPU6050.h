@@ -1,3 +1,9 @@
+#ifndef __MPU6050_H__
+#define __MPU6050_H__
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #include "main.h"
 
@@ -52,3 +58,8 @@ int MPU6050_DataReady(void);
 void MPU6050_Get_LSB_Sensitivity(uint8_t FS_SCALE_GYRO, uint8_t FS_SCALE_ACC);
 void MPU6050_DataConvert(Struct_MPU6050* mpu6050);
 
+
+#ifdef __cplusplus
+}
+#endif
+#endif

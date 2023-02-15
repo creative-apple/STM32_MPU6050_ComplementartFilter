@@ -26,6 +26,7 @@
 /* USER CODE BEGIN Includes */
 #include "LED.h"
 #include "MPU6050.h"
+#include "CalculateAngle.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -134,10 +135,12 @@ int main(void)
 		if(MPU6050_DataReady() == 1)
 		{
 			MPU6050_Get6AxisRawData(&MPU6050);
-			MPU6050_DATA_CONVERT(&MPU6050);
+			MPU6050_DataConvert(&MPU6050);
 //			printf("%f, %f, %f\n", MPU6050.acc_x, MPU6050.acc_y, MPU6050.acc_z);
-			printf("%f, %f, %f\n", MPU6050.gyro_x, MPU6050.gyro_y, MPU6050.gyro_z);
+//			printf("%f, %f, %f\n", MPU6050.gyro_x, MPU6050.gyro_y, MPU6050.gyro_z);
 //			printf("%d, %d, %d\n", MPU6050.acc_x_raw, MPU6050.acc_y_raw, MPU6050.acc_z_raw);
+			CalculateAccAngle(&Angle, &MPU6050);
+			printf("%f, %f\n", Angle.acc_roll,Angle.acc_pitch);
 		}
 
 
