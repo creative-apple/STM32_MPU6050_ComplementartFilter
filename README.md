@@ -27,6 +27,8 @@ void CalculateGyroAngle(Struct_Angle* Angle, Struct_MPU6050* MPU6050)
 }
 ```
 
+
+
 Acc Angle has high frequency noise.
 
 And gyro Angle has low frequency.
