@@ -2,6 +2,8 @@
 
 This project helps you to get Roll, Pitch, Yaw angle by using MPU6050.
 
+![Sensor_Simulation](./img/Sensor_Simulation.gif)
+
 
 # Overview
 By using Acc data, you can get Acc Angle.
