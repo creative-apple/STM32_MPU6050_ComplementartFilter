@@ -6,6 +6,7 @@ This project explain easy approach to get Roll, Pitch, Yaw angle by using MPU605
 
 
 # Description
+## Angle Calculation
 By using Acc data, you can get Acc Angle.
 ```
 void CalculateAccAngle(Struct_Angle* Angle, Struct_MPU6050* MPU6050)
@@ -26,9 +27,7 @@ void CalculateGyroAngle(Struct_Angle* Angle, Struct_MPU6050* MPU6050)
 	Angle->gyro_yaw   += MPU6050->gyro_z * dt;
 }
 ```
-<br/>
-<br/>
-<br/>
+## ComplementartFilter
 Acc Angle has high frequency noise.
 
 And gyro Angle has low frequency.
