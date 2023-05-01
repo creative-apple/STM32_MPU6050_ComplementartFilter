@@ -67,4 +67,3 @@ If you already followed formal project, you can only add one line to get Angle.
 # Result
 
 ![Sensor_Data](./img/Sensor_Data.PNG)
-
