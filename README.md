@@ -1,11 +1,11 @@
 # STM32_MPU6050_ComplementartFilter
 
-This project helps you to get Roll, Pitch, Yaw angle by using MPU6050.
+This project explain easy approach to get Roll, Pitch, Yaw angle by using MPU6050.
 
 ![Sensor_Simulation](./img/Sensor_Simulation.gif)
 
 
-# Overview
+# Description
 By using Acc data, you can get Acc Angle.
 ```
 void CalculateAccAngle(Struct_Angle* Angle, Struct_MPU6050* MPU6050)
@@ -49,9 +49,9 @@ void CalculateCompliFilter(Struct_Angle* Angle, Struct_MPU6050* MPU6050)
 # Code
 This project succeed to this project https://github.com/creative-apple/STM32-MPU6050
 
-Follow the formal project for better understanding.
+Follow the predecessor project for better understanding.
 
-If you already followed formal project, you can only add one line to get Angle.
+If you already followed predecessor project, you need to add only one line to get Angle.
 
 ```
 	if(MPU6050_DataReady() == 1)
