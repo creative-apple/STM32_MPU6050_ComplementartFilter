@@ -52,7 +52,7 @@ This project succeed to this project https://github.com/creative-apple/STM32-MPU
 
 Follow the predecessor project for better understanding.
 
-If you already followed predecessor project, you need to add only one line to get Angle.
+If you already followed predecessor project, you just need to add only one line to get Angle.
 
 ```
 	if(MPU6050_DataReady() == 1)
