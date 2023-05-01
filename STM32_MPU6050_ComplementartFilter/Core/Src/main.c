@@ -24,7 +24,6 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "LED.h"
 #include "MPU6050.h"
 #include "CalculateAngle.h"
 /* USER CODE END Includes */
@@ -39,7 +38,6 @@ int _write(int file, uint8_t* p, int len)
 	}
 	return 0;
 }
-
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -54,8 +52,6 @@ int _write(int file, uint8_t* p, int len)
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-uint8_t uart2_rx_data = 0;
-uint8_t uart2_rx_flag = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -100,23 +96,7 @@ int main(void)
   MX_USART2_UART_Init();
   MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
-
-  HAL_UART_Receive_IT(&huart2, &uart2_rx_data, 1);
-
-
-	if(MPU6050_Initialization() == 1)
-	{
-		while(1)
-		{
-			HAL_GPIO_TogglePin(LED_BLUE_PORT, LED_BLUE_PIN);
-			HAL_Delay(100);
-		}
-	}
-	for(int i=0;i<6;i++)
-	{
-		HAL_GPIO_TogglePin(LED_BLUE_PORT, LED_BLUE_PIN|LED_GREEN_PIN|LED_ORANGE_PIN|LED_RED_PIN);
-		HAL_Delay(300);
-	}
+  MPU6050_Initialization();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -126,26 +106,17 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-//		if(uart2_rx_flag == 1)
-//		{
-//			uart2_rx_flag = 0;
-//			HAL_UART_Transmit(&huart2, &uart2_rx_data, sizeof(uart2_rx_data), 1);
-//		}
 
 		if(MPU6050_DataReady() == 1)
 		{
-			MPU6050_Get6AxisRawData(&MPU6050);
-			MPU6050_DataConvert(&MPU6050);
+			MPU6050_ProcessData(&MPU6050);
 //			CalculateAccAngle(&Angle, &MPU6050);
 //			printf("%f, %f, %f\n", Angle.acc_roll, Angle.acc_pitch, Angle.acc_yaw);
 //			CalculateGyroAngle(&Angle, &MPU6050);
 //			printf("%f, %f, %f\n", Angle.gyro_roll,Angle.gyro_pitch,Angle.gyro_yaw);
 			CalculateCompliFilter(&Angle, &MPU6050);
 			printf("%f, %f, %f\n", Angle.ComFilt_roll,Angle.ComFilt_pitch,Angle.ComFilt_yaw);
-
 		}
-
-
 	}
   /* USER CODE END 3 */
 }
@@ -195,14 +166,6 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
-{
-	 if (huart->Instance == USART2)
-	  {
-	      HAL_UART_Receive_IT(&huart2, &uart2_rx_data, 1);
-	      uart2_rx_flag = 1;
-	  }
-}
 /* USER CODE END 4 */
 
 /**
